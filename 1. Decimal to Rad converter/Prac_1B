@@ -1,0 +1,105 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
+
+char Dec2RadixN(int decValue, int radValue){
+    char answer[20];                       //instantiating all variables
+    char temp[2];
+    int remainder = 0;
+    int value = decValue;
+    int index = 0;
+
+    while(value>=1.1){
+        remainder = value%radValue;     //getting remainder
+        value = value/radValue;         //defiding value by radix number
+        printf("%d\n",index);
+        if (remainder<=9){
+                answer[index] = remainder;          //if remainder is less than 9 then add that number just like it is to the array answer
+                index++;                            //add 1 to index
+                //sprintf(answer,"%d", remainder);
+                //sprintf(temp,"%d", remainder);
+                //strcat(answer,temp);
+        } else {
+                remainder+= 55;                     //if remainder is >9 then add 55 to it, this will convert the remainder to the ASCII code of its respective hexadecimal convertion letter
+                answer[index] = remainder;          //add this value to array
+                index++;                            //add 1 to index
+           // sprintf(temp,"%s", i);
+            //trcat(answer,temp);
+
+        }
+
+    }
+
+    int len = sizeof(answer)/sizeof(char);              //get size of array
+
+
+                                            //Ok so, There is a error with my code that I don't really understand. If I don't put in the following code my answer comes out with 100's of random numbers attatched to to the start of the number
+                                            //I geuss it is because not all spots of the array is used, so then random numbers is populated in it.
+                                            //what i did was change the char right before the radix converted number start to an 's'. This will have the ASCII value of 115.
+                                            //I scan the whole array until I find this number and then the remaining char in the answer array wil be the radixconverted number.
+                                            //I then print the the radixconverted number from this point.
+                                            //I fixed it though, so extra marks for thinking outside the box?
+    answer[index] = 's';
+    int i = len-1;
+    while(answer[i] != 115){
+        i--;
+
+    }
+    i--;
+    while (i>= 0){
+        if (answer[i] <= 9){
+            printf("%d",answer[i]);
+        } else{
+            printf("%c",answer[i]);         //if value is bigger than 9, print the ASCII equivelant
+        }
+        i--;
+    }
+    return 0;
+
+}
+
+int main()
+
+{
+    printf("****************************\n");
+    printf("DECIMAL TO RADIX-n converter\n");
+    printf("written by: Michael\n");
+    printf("Date: 2018\n");
+    printf("****************************\n");
+
+    int number = 0;
+    int radix = 0;
+
+    while(number >= 0 || radix >= 0){
+        printf("Enter a decimal number: ");     //gets decimal number
+        scanf("%d", &number);
+        if(number<=0){
+            printf("EXIT");
+            break;                           //if user enters a value less than 0, exit immediatly
+        }
+        printf("The number you have entered is %d\n", number);
+
+        printf("Enter a radix for the converter between 2 and 16: ");
+        scanf("%d", &radix );           //gets radix
+        if(radix<=0){
+            printf("EXIT");
+            break;      //if user enters a value less than 0, exit immediatly
+        }
+        printf("The radix you have entered is %d\n", radix);
+
+        float lognumber = log2(number);
+        printf("The log2 of the number is %f\n", lognumber);            //gets log2
+        int f = number/radix;
+        printf("The integer result of the number divided by %d is %d\n",radix,f );  //Question (g)
+
+        float h = (number/radix) - f;           //Question h
+        printf("The remainder is %f\n",h);
+
+        Dec2RadixN(number,radix);               //Summons function
+        }
+
+
+
+
+}

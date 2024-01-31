@@ -1,0 +1,3 @@
+# Introduction to Microcontrollers - GPIO outputs
+
+The aim of this practical is to introduce you to basic C programming for microcontrollers. In this practical you are introduced to the Eclipse Integrated Development Environment (IDE), which you will use to program and debug your UCT STM32 development board throughout the semester. You will then investigate the general purpose output (GPIO) capability of your STMicroelectronics STM32F0 Microcontroller. You will also learn how to read the microcontroller reference manuals to identify which registers are needed to control the system’s operation.
